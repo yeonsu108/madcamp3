@@ -17,19 +17,46 @@ public final class urlTask extends AsyncTask<String,Void,Void> {
     @Override
     protected Void doInBackground(String... strings) {
         String method = strings[0];
-        String url = strings[1];
+        String uid = strings[1];
         String message = strings[2];
-        if(method == "get" || method == "GET"){
-            get(url);
-        } else if(method == "post" || method == "POST"){
-            post(url, message);
-        } else if(method == "delete" || method == "DELETE"){
-            delete(url);
+        if(method == "getUser"){
+            getUser("/user/"+uid);
+        } else if(method == "deleteUser"){
+            delete("/user"+uid);
+        } else if (method == "getWish"){
+            getWish("/wish/"+uid, message);
+        } else if(method == "postWish"){
+            post("/wish/"+uid, message);
+        } else if(method == "deleteWish"){
+            delete("/wish/"+uid+"/"+message);
         }
         return null;
     }
 
-    public void get(String strUrl) {
+    public void getUser(String strUrl){
+        try {
+            String sb = get("http://192.249.19.254:6380"+strUrl);
+            JSONObject res = new JSONObject(sb);
+            MainActivity.uid = res.getString("_id");
+            MainActivity.wishList = res.getString("wishList");
+            Log.e("uid>>>>>>>>>>>>>>", MainActivity.uid);
+            Log.e("wishlist>>>>>>>>>>>>>>", MainActivity.wishList);
+        } catch (Exception e){
+            Log.e("getUser", e.toString());
+        }
+    }
+    public void getWish(String strUrl, String message){
+        try {
+            String sb = get("http://192.249.19.254:6380"+strUrl+message);
+            JSONObject res = new JSONObject(sb);
+            MainActivity.yeogi = res.getString("wishList");
+            Log.e("wishlist>>>>>>>>>>>>>>", MainActivity.yeogi);
+        } catch (Exception e){
+            Log.e("getUser", e.toString());
+        }
+    }
+
+    public String get(String strUrl) {
         try {
             URL url = new URL(strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -50,11 +77,7 @@ public final class urlTask extends AsyncTask<String,Void,Void> {
                 }
                 br.close();
                 System.out.println("" + sb.toString());
-                JSONObject res = new JSONObject( sb.toString() );
-                MainActivity.uid = res.getString("_id");
-                MainActivity.wishList = res.getString("wishList");
-                Log.e("uid>>>>>>>>>>>>>>", MainActivity.uid);
-                Log.e("wishlist>>>>>>>>>>>>>>", MainActivity.wishList);
+                return sb.toString();
             } else {
                 System.out.println(con.getResponseMessage());
             }
@@ -62,10 +85,11 @@ public final class urlTask extends AsyncTask<String,Void,Void> {
         } catch (Exception e) {
             System.err.println(e.toString());
         }
+        return null;
     }
     public void post(String strUrl, String jsonMessage){
         try {
-            URL url = new URL(strUrl);
+            URL url = new URL("http://192.249.19.254:6380"+strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(5000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(5000); // InputStream 읽어 오는 Timeout 시간 설정
@@ -104,7 +128,7 @@ public final class urlTask extends AsyncTask<String,Void,Void> {
 
     public void delete(String strUrl){
         try {
-            URL url = new URL(strUrl);
+            URL url = new URL("http://192.249.19.254:6380"+strUrl);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(5000); //서버에 연결되는 Timeout 시간 설정
             con.setReadTimeout(5000); // InputStream 읽어 오는 Timeout 시간 설정

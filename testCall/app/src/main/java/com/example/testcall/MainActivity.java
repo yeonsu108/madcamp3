@@ -9,14 +9,15 @@ import android.util.Log;
 public class MainActivity extends AppCompatActivity {
     static String uid = null;
     static String wishList = null;
+    static String yeogi = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         uid = getSharedPreferences("uid",MODE_PRIVATE).getString("uid","");
-        if(uid.length() == 0) new urlTask().execute("get", "http://192.249.19.254:6380/user/null", "");
-        else new urlTask().execute("get", "http://192.249.19.254:6380/user/"+uid, "");
+        if(uid.length() == 0) new urlTask().execute("getUser", "null", "");
+        else new urlTask().execute("getUser", uid, "");
     }
     @Override
     protected void onStop() {
