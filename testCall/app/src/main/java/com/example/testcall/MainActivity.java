@@ -7,26 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-    String uid = null;
+    static String uid = null;
+    static String wishList = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         uid = getSharedPreferences("uid",MODE_PRIVATE).getString("uid","");
-
-
-        Log.e("print random number: ", ""+uid);
-//        new urlTask().execute("get", "http://192.249.19.254:6380/user", "");
-//        new urlTask().execute("delete", "http://192.249.19.254:6380/user/5e18637707ae272f06440472", "");
-//        new urlTask().execute("get", "http://192.249.19.254:6380/user", "");
-
-        //uid라는 파일을 찾아 text라는 key에 저장된 값이 있는지 확인. 아무값도 들어있지 않으면 ""를 반환
-
-        if(uid.length() == 0) Log.e("set txt : ", "uid is null");
-        else Log.e("set txt : ", uid);
-
-        uid = "getuid";
+        if(uid.length() == 0) new urlTask().execute("get", "http://192.249.19.254:6380/user/null", "");
+        else new urlTask().execute("get", "http://192.249.19.254:6380/user/"+uid, "");
     }
     @Override
     protected void onStop() {

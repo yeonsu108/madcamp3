@@ -1,6 +1,9 @@
 package com.example.testcall;
 
 import android.os.AsyncTask;
+import android.util.Log;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -47,6 +50,11 @@ public final class urlTask extends AsyncTask<String,Void,Void> {
                 }
                 br.close();
                 System.out.println("" + sb.toString());
+                JSONObject res = new JSONObject( sb.toString() );
+                MainActivity.uid = res.getString("_id");
+                MainActivity.wishList = res.getString("wishList");
+                Log.e("uid>>>>>>>>>>>>>>", MainActivity.uid);
+                Log.e("wishlist>>>>>>>>>>>>>>", MainActivity.wishList);
             } else {
                 System.out.println(con.getResponseMessage());
             }
