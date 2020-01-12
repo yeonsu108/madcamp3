@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         uid = getSharedPreferences("uid",MODE_PRIVATE).getString("uid","");
         if(uid.length() == 0) new urlTask().execute("get", "http://192.249.19.254:6380/user/null", "");
         else new urlTask().execute("get", "http://192.249.19.254:6380/user/"+uid, "");
