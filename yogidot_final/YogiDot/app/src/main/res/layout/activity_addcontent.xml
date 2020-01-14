@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:ignore="MissingConstraints">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="요기닷!    "
+            android:layout_marginTop="14dp"
+            android:id="@+id/subtitle"
+            android:textColor="#F2922B"
+            android:textSize="23sp"
+            android:fontFamily="@font/scdream6"
+            />
+    </androidx.appcompat.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#F2922B" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fillViewport="true"
+        android:layout_marginTop="0dp"
+        android:id="@+id/scrollView">
+
+    <LinearLayout
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내 찜리스트에 추가하기"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dp"
+            android:textColor="#F2922B"
+            android:textSize="23sp"
+            android:fontFamily="@font/scdream6"
+            />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipgroup"
+            style="@style/Widget.MaterialComponents.Chip.Choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:lineSpacing="5dp"
+            app:singleSelection="true" />
+
+        <AutoCompleteTextView
+            android:hint="어떤 장소를 추가하고 싶나요?"
+            android:id="@+id/autocomplete"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/scdream5"
+            android:gravity="center"
+            android:textColor="#002C00"
+            android:orientation="horizontal"/>
+
+        <ImageButton
+            android:id="@+id/save"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/save_button"
+            android:text="저장하기"/>
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

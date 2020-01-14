@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/wc_item"
+    android:layout_marginTop="7dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/text_background"
+       >
+
+    <ImageButton
+        android:id="@+id/url_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="right|center_vertical"
+        android:visibility="visible"
+        android:background="@drawable/sns_icon"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical"
+    android:layout_marginLeft="20dp"
+    >
+        <TextView
+            android:id="@+id/store"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:textColor="#005000"
+            android:layout_marginTop="10dp"
+            android:text="맛집이름"
+            android:textSize="20dp"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="@font/scdream6"
+            />
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="3dp"
+        android:textColor="#005000"
+        android:text="맛집이름"
+        android:textSize="12dp"
+        android:lineSpacingExtra="4dp"
+        android:fontFamily="@font/scdream4"
+        />
+
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
